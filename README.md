@@ -3,7 +3,7 @@
 <!-- ## One-shot Detail Retouching with Patch Space Neural Field based Transformation Blending 
  -->
 
-* Tensorflow implementation of *One-shot Detail Retouching with Patch Space Neural Field based Transformation Blending*, which is currently under review.
+* Tensorflow implementation of *One-shot Detail Retouching with Patch Space Neural Transformation Blending*, which is currently under review.
 * This repo contains the main code.
 
 ### Required packages with suggested versions
