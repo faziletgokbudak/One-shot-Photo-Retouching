@@ -3,7 +3,7 @@ import functools
 import tensorflow as tf
 from tensorflow import keras
 from keras import activations
-from tensorflow.keras import layers, initializers
+from keras import layers, initializers
 
 from utils import positional_encoding
 
@@ -38,6 +38,9 @@ class CoeffMLP(keras.Model):
         y = self.dense2(y)
         y = self.dense3(y)
         f = self.last_layer(y)
+
+        # ## Before ablation studies
+
         f_scalars_T = tf.cast(tf.transpose(f), tf.float32)
         self.f_weights = f
         A_dot_x_vectorized = tf.tensordot(self.A, tf.cast(tf.transpose(inputs), tf.float32), axes=1)
@@ -45,9 +48,18 @@ class CoeffMLP(keras.Model):
         weight_mult = A_dot_x_vectorized * f_repeated_vectorized
         y = tf.transpose(tf.math.reduce_sum(weight_mult, axis=0))
 
+        # Ablation studies
+        # B = tf.squeeze(self.A, axis=-1)
+        # weight_mult = tf.tensordot(f, B, 1)
+        # y = weight_mult * inputs
+        # import ipdb
+        # ipdb.set_trace()
+
+        # y = tf.transpose(tf.math.reduce_sum(weight_mult, axis=0)) * inputs
+        # tf.print(weight_mult.shape, y.shape, inputs.shape)
+
         # scalar_coeff = tf.math.reduce_sum(self.f_weights[0, :] * self.A[:, 0, 0]) #scalar coeff
         # tf.print(scalar_coeff)
-        # ipdb.set_trace()
         # y = scalar_coeff * inputs
         # f = tf.squeeze(self.last_layer(y), axis=-1)
 

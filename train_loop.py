@@ -17,7 +17,8 @@ def make_variables(k, initializer):
 def generate_random_filters():
     """Generate random filters m and n of both sides of tree for initialisation
     Filters are variables, that is, learnable."""
-    patch_len = args.patch_size[0] * args.patch_size[1]
+    patch_len = 1
+    # patch_len = args.patch_size[0] * args.patch_size[1]
     kernel = make_variables([args.num_matrices, patch_len, patch_len], tf.random_uniform_initializer(minval=0., maxval=1.))
     return kernel
 

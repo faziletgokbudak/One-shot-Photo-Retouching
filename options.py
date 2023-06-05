@@ -9,12 +9,12 @@ class Options():
         parser.add_argument('--test_path', type=str)
         parser.add_argument('--test_output_path', type=str)
         parser.add_argument('--model_path', type=str,
-                            default='/Users/faziletgokbudak/One-shot-Photo-Retouching/models/UM_ablation_scalar')
+                            default='/Users/faziletgokbudak/One-shot-Photo-Retouching/models/ours_room_BF')
 
         parser.add_argument('--lr', type=int, default=1e-2)
         parser.add_argument('--num_channel', type=int, default=3)
         parser.add_argument('--batch_size', type=int, default=64)
-        parser.add_argument('--epoch', type=int, default=200)
+        parser.add_argument('--epoch', type=int, default=400)
 
         parser.add_argument('--patch_size', type=list, default=[3, 3])
         parser.add_argument('--laplacian_level', type=int, default=5)
@@ -23,6 +23,7 @@ class Options():
         parser.add_argument("--num_matrices_list", nargs="+", default=[1, 4, 8, 16, 64, 256])
 
         parser.add_argument('--freq_num', type=int, default=0)
+        parser.add_argument('--chrom', type=str, default=False) #trains/tests chrominance channels as well
         parser.add_argument('--var_loss', type=bool, default=False)# adds variance loss to l1 loss
 
         parser.add_argument('--resize_size', type=int, default=100)

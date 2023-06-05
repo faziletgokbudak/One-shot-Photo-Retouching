@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 import tensorflow as tf
 
+import matplotlib.pyplot as plt
+
 from tfg import pyramid
 
 from options import Options
@@ -13,11 +15,16 @@ args = Options().parse()
 
 def image_preprocess(img_path, suffix, pyramid_type):
     img = cv2.imread(img_path)
-    if suffix == 'input' or 'output':
-        img = crop_center(img, 100, 100)
-    else:
-        img = crop_center_test(img, 100, 100)
+    # if suffix == 'input' or 'output':
+    #     img = crop_center(img, 100, 100)
+    # else:
+    #     img = crop_center_test(img, 100, 100)
+    img = cv2.resize(img, (512, 512), interpolation=cv2.INTER_CUBIC)
+    # cv2.imwrite('/Users/faziletgokbudak/Desktop/landscape_qualitative_resized.png', img)
 
+    # plt.figure()
+    # plt.imshow(img)
+    # plt.show()
     img_ycrcb = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
 
     img_y_np = img_ycrcb[:, :, 0] / 255.

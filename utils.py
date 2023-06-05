@@ -5,8 +5,9 @@ import numpy as np
 import tensorflow as tf
 
 from typing import Union, Sequence, Tuple
+from sklearn.feature_extraction import image as extraction
 
-from cv2.ximgproc import guidedFilter
+# from cv2.ximgproc import guidedFilter
 
 from options import Options
 
@@ -16,6 +17,14 @@ Float = Union[float, np.float16, np.float32, np.float64]
 TensorLike = Union[Integer, Float, Sequence, np.ndarray, tf.Tensor, tf.Variable]
 
 args = Options().parse()
+
+
+def extract_patches_from_laplace_layer(laplace_layer):
+    laplace_np = np.array(tf.squeeze(tf.squeeze(laplace_layer, axis=0), axis=-1))
+    patches_np = np.squeeze(extraction.extract_patches_2d(laplace_np,
+                                                          (args.patch_size[0] * args.patch_size[1], 1)), axis=-1)
+    patches = tf.convert_to_tensor(patches_np)
+    return patches
 
 
 def reconstruct_image_from_subbands(subbands: TensorLike, base: TensorLike) -> TensorLike:
@@ -258,7 +267,7 @@ def apply_detail_decomposition(img: TensorLike) -> Tuple[list, TensorLike]:
     subbands = []
     for i in range(1, N):
         tmp2 = tmp1
-        tmp1 = guidedFilter(tmp2, p, r ** i, eps)  # double the spatial extent each time
+        # tmp1 = guidedFilter(tmp2, p, r ** i, eps)  # double the spatial extent each time
         layer = tmp2 - tmp1
         layer = tf.expand_dims(tf.expand_dims(tf.convert_to_tensor(layer), axis=0), axis=-1)
         subbands.append(layer)  # a subband is the difference of two succcessively filtered versions of the image
