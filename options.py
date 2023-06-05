@@ -9,7 +9,7 @@ class Options():
         parser.add_argument('--test_path', type=str)
         parser.add_argument('--test_output_path', type=str)
         parser.add_argument('--model_path', type=str,
-                            default='/Users/faziletgokbudak/One-shot-Photo-Retouching/models/ours_room_BF')
+                            default='/Users/faziletgokbudak/One-shot-Photo-Retouching/models/LLF_a05_s01_all_c')
 
         parser.add_argument('--lr', type=int, default=1e-2)
         parser.add_argument('--num_channel', type=int, default=3)

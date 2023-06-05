@@ -3,14 +3,12 @@ import numpy as np
 import tensorflow as tf
 
 from options import Options
-from utils import extract_image_patches, extract_patches_from_laplace_layer
+from utils import extract_patches
 from train_loop import train_loop
 from dataloader import image_preprocess
-from sklearn.feature_extraction import image as extraction
 
 
 args = Options().parse()
-
 
 
 if __name__ == '__main__':
@@ -24,11 +22,12 @@ if __name__ == '__main__':
         os.makedirs(model_path_kernels)
 
     mixed_laplacian = []
+
     # Y channel - Laplacian layers' training
     for i in range(args.laplacian_level):
 
-        input_patches = extract_patches_from_laplace_layer(laplacian_input_y[i])
-        output_patches = extract_patches_from_laplace_layer(laplacian_output_y[i])
+        input_patches = extract_patches(laplacian_input_y[i])
+        output_patches = extract_patches(laplacian_output_y[i])
 
         model, A_kernel = train_loop(input_patches, output_patches)
 
@@ -43,8 +42,8 @@ if __name__ == '__main__':
 
     if args.chrom:
         # Cr channel training
-        input_patches_cr = extract_patches_from_laplace_layer(tensor_input_cr)
-        output_patches_cr = extract_patches_from_laplace_layer(tensor_output_cr)
+        input_patches_cr = extract_patches(tensor_input_cr)
+        output_patches_cr = extract_patches(tensor_output_cr)
 
         model_cr, A_cr = train_loop(input_patches_cr, output_patches_cr)
         np.save(model_path_kernels + '/cr', A_cr.numpy())
@@ -55,8 +54,8 @@ if __name__ == '__main__':
         model_cr.save(model_path_cr)
 
         # Cb channel training
-        input_patches_cb = extract_patches_from_laplace_layer(tensor_input_cb)
-        output_patches_cb = extract_patches_from_laplace_layer(tensor_output_cb)
+        input_patches_cb = extract_patches(tensor_input_cb)
+        output_patches_cb = extract_patches(tensor_output_cb)
 
         model_cb, A_cb = train_loop(input_patches_cb, output_patches_cb)
         np.save(model_path_kernels + '/cb', A_cb.numpy())

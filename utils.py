@@ -19,28 +19,39 @@ TensorLike = Union[Integer, Float, Sequence, np.ndarray, tf.Tensor, tf.Variable]
 args = Options().parse()
 
 
-def extract_patches_from_laplace_layer(laplace_layer):
-    laplace_np = np.array(tf.squeeze(tf.squeeze(laplace_layer, axis=0), axis=-1))
-    patches_np = np.squeeze(extraction.extract_patches_2d(laplace_np,
-                                                          (args.patch_size[0] * args.patch_size[1], 1)), axis=-1)
+def extract_patches(image):
+    """Extracts the image patches of dimension, patch_dims,
+    with a stride of integer number based on sklearn patch extraction function.
+
+   Args:
+     image: A tensor of shape `[1, H, W, 1]`, where `H`
+       the height of the image, `W` the width of the image.
+
+   Returns:
+     A tensor of shape `[N, H_p * W_p]`, where `N` is the total number of patches.
+
+   """
+    img_np = np.array(tf.squeeze(tf.squeeze(image, axis=0), axis=-1))
+    patches_np = np.squeeze(extraction.extract_patches_2d(img_np,
+                                                         (args.patch_size[0] * args.patch_size[1], 1)), axis=-1)
     patches = tf.convert_to_tensor(patches_np)
     return patches
 
 
 def reconstruct_image_from_subbands(subbands: TensorLike, base: TensorLike) -> TensorLike:
-    img = tf.zeros(shape=subbands[:, :, 0].shape)
-    for i in range(subbands.shape[-1]):
-        img = tf.add(img, subbands[:, :, i])
-    return tf.add(img, base)
+   img = tf.zeros(shape=subbands[:, :, 0].shape)
+   for i in range(subbands.shape[-1]):
+       img = tf.add(img, subbands[:, :, i])
+   return tf.add(img, base)
 
 
 def extract_image_patches(image: TensorLike,
-                          patch_dims: TensorLike,
-                          stride: TensorLike) -> tf.Tensor:
+                         patch_dims: TensorLike,
+                         stride: TensorLike) -> tf.Tensor:
     """Extracts the image patches of dimension, patch_dims,
-   with a stride of integer number.
+    with a stride of integer number.
 
-  Args:
+    Args:
     image: A tensor of shape `[B, H, W, C]`, where `B` is the batch size, `H`
       the height of the image, `W` the width of the image, and `C` the number of
       channels of the image.
@@ -49,10 +60,10 @@ def extract_image_patches(image: TensorLike,
     stride: An integer number that indicates the rowwise movement between
     successive patches
 
-  Returns:
+    Returns:
     A tensor of shape `[N, H_p * W_p]`, where `N` is the total number of patches.
 
-  """
+    """
 
     patches = tf.image.extract_patches(images=image,
                                        sizes=[1, patch_dims[0], patch_dims[1], 1],

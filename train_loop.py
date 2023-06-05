@@ -3,7 +3,7 @@ import math
 import tensorflow as tf
 import tensorflow_probability as tfp
 
-from model import PositionalMLP, MapMLP, CoeffMLP
+from model import CoeffMLP
 from options import Options
 
 args = Options().parse()
@@ -17,8 +17,7 @@ def make_variables(k, initializer):
 def generate_random_filters():
     """Generate random filters m and n of both sides of tree for initialisation
     Filters are variables, that is, learnable."""
-    patch_len = 1
-    # patch_len = args.patch_size[0] * args.patch_size[1]
+    patch_len = args.patch_size[0] * args.patch_size[1]
     kernel = make_variables([args.num_matrices, patch_len, patch_len], tf.random_uniform_initializer(minval=0., maxval=1.))
     return kernel
 
@@ -28,12 +27,10 @@ def calculate_row_variance(rows, row_order):
     row_var = tf.reduce_sum(tfp.stats.variance(rows[:args.num_matrices // set_number], sample_axis=0))
     for i in range(1, set_number):
         row_var = row_var + tf.reduce_sum(tfp.stats.variance(rows[i*(args.num_matrices // set_number):(i+1)*(args.num_matrices // set_number)], sample_axis=0))
-        # print(i, row_var, 'hii')
     return row_var
 
 
 def calculate_total_variance(A):
-    # row_var_calculator = lambda rows, row_order: calculate_row_variance(rows, row_order)
     total_var = 0.
     row_number = int(math.log2(args.num_matrices))
     for k in range(1, row_number + 1):
@@ -59,6 +56,5 @@ def train_loop(input_patches, output_patches):
         output_patches,
         batch_size=args.batch_size,
         epochs=args.epoch,
-        # callbacks=[checkpointer]
     )
     return model, A
