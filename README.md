@@ -2,11 +2,10 @@
 
 <!-- ## One-shot Detail Retouching with Patch Space Neural Field based Transformation Blending 
  -->
-
-* Tensorflow implementation of *One-shot Detail Retouching with Patch Space Neural Field based Transformation Blending*, which is currently under review.
+* Tensorflow implementation of *One-shot Detail Retouching with Patch Space Neural Transformation Blending*, which is currently under review.
 * This repo contains the main code.
 
-### Required packages with suggested versions
+### Required packages with suggested versions:
 ```
 python==3.8
 numpy==1.19.5
@@ -38,4 +37,15 @@ python main.py --input_path=/DT_dataset/UM/train_images/Before.png --output_path
 
 ```
 python test.py --test_path=/DT_dataset/UM/test_images/Before.png --test_output_path=/output/output1.png --output_path=/DT_dataset/UM/train_labels/BeforeAfter_UM.png
+```
+
+## Citation
+If you find our work relevant to your research, please cite:
+```
+@article{gokbudak2022one,
+  title={One-shot Detail Retouching with Patch Space Neural Field based Transformation Blending},
+  author={Gokbudak, Fazilet and Oztireli, Cengiz},
+  journal={arXiv preprint arXiv:2210.01217},
+  year={2022}
+}
 ```
