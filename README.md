@@ -1,4 +1,4 @@
-## One-shot Detail Retouching [[arXiv](https://arxiv.org/pdf/2210.01217.pdf)] [[Project website](https://faziletgokbudak.github.io/projects/one-shot-md/)]
+## One-shot Detail Retouching [[arXiv](https://arxiv.org/pdf/2210.01217.pdf)] [[Project website](https://faziletgokbudak.github.io/projects/one-shot/)]
 
 <!-- ## One-shot Detail Retouching with Patch Space Neural Field based Transformation Blending 
  -->
