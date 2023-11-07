@@ -39,6 +39,12 @@ python main.py --input_path=/DT_dataset/UM/train_images/Before.png --output_path
 python test.py --test_path=/DT_dataset/UM/test_images/Before.png --test_output_path=/output/output1.png --output_path=/DT_dataset/UM/train_labels/BeforeAfter_UM.png
 ```
 
+### Results:
+<p align="center">
+  <img src='/output/Qualitative_zoomed2.pdf'/><br/>
+  <br/>Qualitative comparisons with state-of-the-art methods on different types of images<br/>
+</p>
+
 ## Citation
 If you find our work relevant to your research, please cite:
 ```
