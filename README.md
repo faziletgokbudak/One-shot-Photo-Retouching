@@ -1,8 +1,8 @@
-## One-shot Detail Retouching [[arXiv](https://arxiv.org/pdf/2210.01217.pdf)] [[Project website](https://faziletgokbudak.github.io/projects/one-shot/)]
+## One-shot Detail Retouching [[Paper](https://faziletgokbudak.github.io/publications/cvmp23_4.pdf)] [[Project website](https://faziletgokbudak.github.io/projects/one-shot/)]
 
 <!-- ## One-shot Detail Retouching with Patch Space Neural Field based Transformation Blending 
  -->
-* Tensorflow implementation of *One-shot Detail Retouching with Patch Space Neural Transformation Blending*, which is accepted by ACM SIGGRAPH European Conference on Visual Media Production.
+* Tensorflow implementation of *One-shot Detail Retouching with Patch Space Neural Transformation Blending*, which is accepted by ACM SIGGRAPH European Conference on Visual Media Production, 2023.
 * This repo contains the main code.
 
 ### Required packages with suggested versions:
