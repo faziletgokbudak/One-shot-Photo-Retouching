@@ -41,7 +41,7 @@ python test.py --test_path=/DT_dataset/UM/test_images/Before.png --test_output_p
 
 ### Results:
 <p align="center">
-  <img src='/output/Qualitative_zoomed2.pdf'/><br/>
+  <img src='/output/Qualitative_zoomed.png'/><br/>
   <br/>Qualitative comparisons with state-of-the-art methods on different types of images<br/>
 </p>
 
