@@ -48,10 +48,14 @@ python test.py --test_path=/DT_dataset/UM/test_images/Before.png --test_output_p
 ## Citation
 If you find our work relevant to your research, please cite:
 ```
-@article{gokbudak2022one,
-  title={One-shot Detail Retouching with Patch Space Neural Field based Transformation Blending},
-  author={Gokbudak, Fazilet and Oztireli, Cengiz},
-  journal={arXiv preprint arXiv:2210.01217},
-  year={2022}
+@inproceedings{10.1145/3626495.3626499,
+author = {Gokbudak, Fazilet and Oztireli, A. Cengiz},
+title = {One-Shot Detail Retouching with Patch Space Neural Transformation Blending},
+year = {2023},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3626495.3626499},
+doi = {10.1145/3626495.3626499},
+series = {CVMP '23}
 }
 ```
