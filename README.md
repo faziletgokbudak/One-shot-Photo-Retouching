@@ -1,42 +1,42 @@
-## One-shot Detail Retouching [[Paper](https://faziletgokbudak.github.io/publications/cvmp23_4.pdf)] [[Project website](https://faziletgokbudak.github.io/projects/one-shot/)]
+## One-shot Detail Retouching [[Paper](https://dl.acm.org/doi/pdf/10.1145/3626495.3626499)] [[Project website](https://faziletgokbudak.github.io/one-shot/)]
 
 <!-- ## One-shot Detail Retouching with Patch Space Neural Field based Transformation Blending 
  -->
-* Tensorflow implementation of *One-shot Detail Retouching with Patch Space Neural Transformation Blending*, which is accepted by ACM SIGGRAPH European Conference on Visual Media Production, 2023.
+* Tensorflow implementation of *One-shot Detail Retouching with Patch Space Neural Transformation Blending*, published at ACM SIGGRAPH European Conference on Visual Media Production, 2023.
 * This repo contains the main code.
 
-### Required packages with suggested versions:
+### Requirements:
+
+To test our method, you first need to install the required packages, ideally in a virtual environment. I also recommend using python>=3.8. To install the packages, you can run the following:
+
 ```
-python==3.8
-numpy==1.19.5
-tensorflow==2.6.2
-tensorflow-probability==0.12.2
-opencv-contrib-python==4.6.0
+pip install -r requirements.txt
 ```
 
 ### Useful Arguments:
 ```
-[--input_path]          # Path to the 'before' image.
-[--output_path]         # Path to the 'after' image.
-[--test_path]           # Path to the input image.
-[--test_output_path]    # Path to the output image, specified by the user.
-[--model path]          # Path to the saved models.
-[--num_matrices]        # Number of transformation matrices to be blended.
-[--num_mlp]             # Number of MLPs to be used. For the latest version of our technique, keep it 1.
-[--patch_size]          # Size of image patches to be processed.
-[--laplacian_level]     # Number of Laplacian levels for frequency decomposition.
+[--input_path]                     # Path to a 'before' image.
+[--output_path]                    # Path to an 'after' image.
+[--test_path]                      # Path to an 'input' image.
+[--test_output_path]               # Target directory+filename for the output image.  
+[--model_path]                     # Path to the saved models.
+[--num_matrices, default=256]      # Number of transformation matrices to be blended.
+[--num_mlp, default=1]             # Number of MLPs to be used. For the latest version of our technique, keep it 1.
+[--patch_size, default=[3,3]       # Size of image patches to be processed.
+[--laplacian_level, default=5]     # Number of Laplacian levels for frequency decomposition.
 ```
 
-### Training:
+
+### Train:
 
 ```
-python main.py --input_path=/DT_dataset/UM/train_images/Before.png --output_path=/DT_dataset/UM/train_labels/BeforeAfter_UM.png
+python main.py --input_path=../Before.png --output_path=../After.png
 ```
 
-### Testing:
+### Test:
 
 ```
-python test.py --test_path=/DT_dataset/UM/test_images/Before.png --test_output_path=/output/output1.png --output_path=/DT_dataset/UM/train_labels/BeforeAfter_UM.png
+python test.py --test_path=../Input.png  --test_output_path=../Output.png
 ```
 
 ### Results:
