@@ -22,7 +22,7 @@ pip install -r requirements.txt
 [--model_path]                     # Path to the saved models.
 [--num_matrices, default=256]      # Number of transformation matrices to be blended.
 [--num_mlp, default=1]             # Number of MLPs to be used. For the latest version of our technique, keep it 1.
-[--patch_size, default=[3,3]       # Size of image patches to be processed.
+[--patch_size, default=[3,3]]      # Size of image patches to be processed.
 [--laplacian_level, default=5]     # Number of Laplacian levels for frequency decomposition.
 ```
 
