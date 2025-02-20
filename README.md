@@ -1,4 +1,4 @@
-## One-shot Detail Retouching [[Paper](https://dl.acm.org/doi/pdf/10.1145/3626495.3626499)] [[Project website](https://faziletgokbudak.github.io/one-shot/)]
+## One-shot Detail Retouching [[Paper](https://dl.acm.org/doi/pdf/10.1145/3626495.3626499)] [[Project website](https://faziletgokbudak.github.io/DetailRetouching/)]
 
 <!-- ## One-shot Detail Retouching with Patch Space Neural Field based Transformation Blending 
  -->
